@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in configus.gemspec
+  gem 'minitest'
+  gem 'ruby-prof'
+  gem 'coveralls', require: false
+  gem 'pry'
+
 gemspec
