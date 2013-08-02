@@ -1,33 +1,6 @@
 require 'test_helper'
 
-class TestSimpleBuilder < MiniTest::Test
-  
-  def setup
-    proc = Proc.new do
-      env :production do
-        key 'value'  
-      end    
-    end
-    @builder = Configus::Builder.new(:production, proc)
-    @options = @builder.result
-  end
-
-  def test_return_simple_structure
-    assert_equal @options, {key: "value"} 
-  end
-
-  # def test_call_key
-  #   binding.pry
-  #   assert_equal @builder.key, "value"
-  # end
-
-  # def test_raise_error_call_key=
-  #   assert_raises(NoMethodError) { @builder.new_key = "value" }
-  # end
-
-end
-
-class TestMultilevelBuilder < MiniTest::Test
+class TestBuilder < MiniTest::Test
 
   def setup
     proc = Proc.new do
