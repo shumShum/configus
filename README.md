@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/shumShum/configus/badge.png)](https://coveralls.io/r/shumShum/configus)
+
 # Configus
 
 TODO: Write a gem description
