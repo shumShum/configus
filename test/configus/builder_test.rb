@@ -68,4 +68,17 @@ class TestBuilder < MiniTest::Test
     }
     assert_equal @options_dev, result_hash
   end
+
+  def test_error_if_double_definition
+    proc = Proc.new do
+      env :production do
+        website_url 'http://example.com'
+      end
+
+      env :production do
+        key 'value'
+      end
+    end
+    assert_raises(ArgumentError) { Configus::Builder.new(:production, proc) }
+  end
 end

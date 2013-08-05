@@ -17,6 +17,7 @@ module Configus
 
     def env(environment, options = {}, &block)
       if block_given?
+        raise ArgumentError if self.conf_structure.keys.include?(environment)
         if options.any?
           self.conf_structure[environment.to_sym] = deep_merge(
                                                 self.conf_structure[options[:parent]],
@@ -36,7 +37,6 @@ module Configus
 
     private
     def deep_merge(hash_one, hash_two)
-      # binding.pry
       hash_out = hash_one.dup
       hash_two.each_pair do |key, val|
         one_val = hash_out[key]
