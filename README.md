@@ -1,5 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/shumShum/configus/badge.png)](https://coveralls.io/r/shumShum/configus)
 [![Code Climate](https://codeclimate.com/github/shumShum/configus.png)](https://codeclimate.com/github/shumShum/configus)
+[![Build Status](https://travis-ci.org/shumShum/configus.png?branch=master)](https://travis-ci.org/shumShum/configus)
 
 # Configus
 
