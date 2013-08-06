@@ -1,3 +1,5 @@
+require "active_support/core_ext/hash/deep_merge"
+
 module Configus
 
   class Builder
@@ -18,11 +20,9 @@ module Configus
     def env(environment, options = {}, &block)
       if block_given?
         raise ArgumentError if self.conf_structure.keys.include?(environment)
-        if options.any?
-          self.conf_structure[environment.to_sym] = deep_merge(
-                                                self.conf_structure[options[:parent]],
-                                                HashConstructor.block_to_hash(block)
-                                              )
+        if options.any?    
+          self.conf_structure[environment.to_sym] = self.conf_structure[options[:parent]]
+                          .deep_merge HashConstructor.block_to_hash(block)                            
         else
           self.conf_structure[environment.to_sym] = HashConstructor.block_to_hash(block)
         end
@@ -35,14 +35,5 @@ module Configus
       self.conf_structure[conf_environment]
     end
 
-    private
-    def deep_merge(hash_one, hash_two)
-      hash_out = hash_one.dup
-      hash_two.each_pair do |key, val|
-        one_val = hash_out[key]
-        hash_out[key] = one_val.is_a?(Hash) && val.is_a?(Hash) ? deep_merge(one_val, val) : val
-      end
-      hash_out
-    end
   end
 end
